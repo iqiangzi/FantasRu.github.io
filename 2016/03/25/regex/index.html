@@ -1,0 +1,899 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="正则,re," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="正则表达式（Regular Expression，在代码中常简写为regex、regexp或RE）。正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。
+
+正则表达式测试网站:Regex Pal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式学习笔记">
+<meta property="og:url" content="http://fantasru.github.io/2016/03/25/regex/index.html">
+<meta property="og:site_name" content="panda的博客">
+<meta property="og:description" content="正则表达式（Regular Expression，在代码中常简写为regex、regexp或RE）。正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。
+
+正则表达式测试网站:Regex Pal">
+<meta property="og:updated_time" content="2016-03-25T12:39:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式学习笔记">
+<meta name="twitter:description" content="正则表达式（Regular Expression，在代码中常简写为regex、regexp或RE）。正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。
+
+正则表达式测试网站:Regex Pal">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 正则表达式学习笔记 | panda的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cf36ca0918971bedd439356c80acefe8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">panda的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">XX</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            日志
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                正则表达式学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-25T19:45:48+08:00" content="2016-03-25">
+              2016-03-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><blockquote>
+<p>正则表达式（Regular Expression，在代码中常简写为regex、regexp或RE）。正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。</p>
+</blockquote>
+<h1 id="正则表达式测试网站-Regex-Pal"><a href="#正则表达式测试网站-Regex-Pal" class="headerlink" title="正则表达式测试网站:Regex Pal"></a>正则表达式测试网站:<a href="http://www.regexpal.com/" target="_blank" rel="external">Regex Pal</a></h1><a id="more"></a>
+<hr>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>匹配除换行符以外的任意字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\w</td>
+<td><strong>匹配字母或数字或下划线或汉字</strong></td>
+</tr>
+<tr>
+<td>\s</td>
+<td><strong>匹配任意的空白符</strong></td>
+</tr>
+<tr>
+<td>\d</td>
+<td><strong>匹配数字</strong></td>
+</tr>
+<tr>
+<td>\b</td>
+<td><strong>匹配单词的开始或结束</strong></td>
+</tr>
+<tr>
+<td>^</td>
+<td><strong>匹配字符串的开始</strong></td>
+</tr>
+<tr>
+<td>*</td>
+<td><strong>重复零次或更多次</strong></td>
+</tr>
+<tr>
+<td>+</td>
+<td><strong>重复一次或更多次</strong></td>
+</tr>
+<tr>
+<td>?</td>
+<td><strong>重复零次或一次</strong></td>
+</tr>
+<tr>
+<td>{n}</td>
+<td><strong>重复n次</strong></td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td><strong>重复n次或更多次</strong></td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td><strong>重复n到m次</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="b"><a href="#b" class="headerlink" title="\b"></a>\b</h2><p><strong>\bHi\b.*\bLucy\b</strong>：先是一个单词hi,然后是任意个任意字符(但不能是换行)，最后是Lucy这个单词</p>
+<blockquote>
+<p> Hi,nice to meet you.I am Lucy.</p>
+</blockquote>
+<hr>
+<h2 id="d-数字"><a href="#d-数字" class="headerlink" title="\d 数字"></a>\d 数字</h2><p><strong>0\d\d-\d\d\d\d\d\d\d\d（同 0\d{2}-\d{8}）</strong>：以0开头，然后是两个数字，然后是一个连字号“-”，最后是8个数字(也就是中国的电话号码。当然，这个例子只能匹配区号为3位的情形)。</p>
+<blockquote>
+<p> 025-52648888</p>
+</blockquote>
+<hr>
+<h2 id="w-字母-s-空白"><a href="#w-字母-s-空白" class="headerlink" title="\w 字母 \s 空白"></a>\w 字母 \s 空白</h2><p><strong>\s</strong>匹配任意的空白符，包括空格，制表符(Tab)，换行符，中文全角空格等。<strong>\w</strong>匹配字母或数字或下划线或汉字等。</p>
+<p><strong>\ba\w*\b</strong>:以字母a开头的单词(先是某个单词开始处(\b)，然后是字母a,然后是任意数量的字母或数字(\w*)，最后是单词结束处(\b)。</p>
+<p><strong>\d+</strong>:匹配1个或更多连续的数字。这里的+是和<em>类似的元字符，不同的是</em>匹配重复任意次(可能是0次)，而+则匹配重复1次或更多次。</p>
+<p><strong>\b\w{6}\b</strong>:匹配刚好7个字符的单词。</p>
+<hr>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找\ . , *"></a>查找\ . , *</h2><p>如果你想查找元字符本身的话，比如你查找.,或者\,就出现了问题：你没办法指定它们，因为它们会被解释成别的意思。这时你就得使用\来取消这些字符的特殊意义。因此，你应该使用<strong>\.</strong>和<strong>\*</strong>。当然，要查找\本身，你也得用\\</p>
+<blockquote>
+<p>unibetter\.com：匹配unibetter.com</p>
+<p>C:\\Windows：匹配C:\Windows。</p>
+</blockquote>
+<hr>
+<h2 id=""><a href="#" class="headerlink" title="^ $"></a>^ $</h2><p>元字符^（和数字6在同一个键位上的符号）和$都匹配一个位置，这和\b有点类似。^匹配你要用来查找的字符串的开头，$匹配结尾。这两个代码在验证输入的内容时非常有用。比如一个网站如果要求你填写的QQ号必须为5位到12位数字时，可以使用：<strong>^\d{5,12}$</strong></p>
+<hr>
+<h2 id="反义"><a href="#反义" class="headerlink" title="反义"></a>反义</h2><table>
+<thead>
+<tr>
+<th>\W</th>
+<th><strong>匹配任意不是字母，数字，下划线，汉字的字符</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\S</td>
+<td><strong>匹配任意不是空白符的字符</strong></td>
+</tr>
+<tr>
+<td>\D</td>
+<td><strong>匹配任意非数字的字符</strong></td>
+</tr>
+<tr>
+<td>\B</td>
+<td><strong>匹配不是单词开头或结束的位置</strong></td>
+</tr>
+<tr>
+<td>^[x]</td>
+<td><strong>匹配除了x以外的任意字符</strong></td>
+</tr>
+<tr>
+<td>^[aeiou]</td>
+<td><strong>匹配除了aeiou这几个字母以外的任意字符</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-1"><a href="#-1" class="headerlink" title="[ ]"></a>[ ]</h2><p><strong>[aeiou]</strong>:匹配任何一个英文元音字母，[.?!]匹配标点符号(.或?或!)。</p>
+<p>一个更复杂的表达式：<strong>(?0\d{2}[) -]?\d{8}</strong></p>
+<blockquote>
+<p>(010)88886666，或022-22334455，或02912345678等。</p>
+</blockquote>
+<hr>
+<h2 id="或"><a href="#或" class="headerlink" title="| 或"></a>| 或</h2><p><strong>0\d{2}-\d{8}|0\d{3}-\d{7}</strong></p>
+<blockquote>
+<p>0121-2321321 或025-12121212</p>
+</blockquote>
+<hr>
+<h2 id="后向应用"><a href="#后向应用" class="headerlink" title="后向应用"></a>后向应用</h2><p>后向引用用于重复搜索前面某个分组匹配的文本</p>
+<p><strong>\b(\w+)\b\s+\1\b</strong></p>
+<blockquote>
+<p>what what </p>
+</blockquote>
+<hr>
+<h2 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h2><h3 id="零宽度正预测先行断言-exp"><a href="#零宽度正预测先行断言-exp" class="headerlink" title="零宽度正预测先行断言(?=exp)"></a>零宽度正预测先行断言(?=exp)</h3><p>它断言自身出现的位置的后面能匹配表达式exp。</p>
+<p><strong>\b\w+(?=ing\b)</strong>:匹配以ing结尾的单词的前面部分(除了ing以外的部分)</p>
+<blockquote>
+<p>查找I’m singing while you’re dancing.时，它会匹配sing和danc。</p>
+</blockquote>
+<h3 id="零宽度正回顾后发断言-lt-exp"><a href="#零宽度正回顾后发断言-lt-exp" class="headerlink" title="零宽度正回顾后发断言(?&lt;=exp)"></a>零宽度正回顾后发断言(?&lt;=exp)</h3><p>它断言自身出现的位置的前面能匹配表达式exp。</p>
+<p><strong>(?&lt;=\bre)\w+\b</strong>:匹配以re开头的单词的后半部分(除了re以外的部分)，例</p>
+<blockquote>
+<p>如在查找I’m singing while you’re dancing.时，它匹配ading。</p>
+</blockquote>
+<h3 id="零宽度负预测先行断言-exp"><a href="#零宽度负预测先行断言-exp" class="headerlink" title="零宽度负预测先行断言(?!exp)"></a>零宽度负预测先行断言(?!exp)</h3><p>断言此位置的后面不能匹配表达式exp。</p>
+<p><strong>\d{3}(?!\d)</strong>匹配三位数字，而且这三位数字的后面不能是数字；<br><strong>\b((?!abc)\w)+\b</strong>匹配不包含连续字符串abc的单词。</p>
+<h3 id="零宽度负回顾后发断言-lt-exp"><a href="#零宽度负回顾后发断言-lt-exp" class="headerlink" title="零宽度负回顾后发断言(?&lt;!exp)"></a>零宽度负回顾后发断言(?&lt;!exp)</h3><p><strong>(?&lt;![a-z])\d{7}</strong>匹配前面不是小写字母的七位数字。</p>
+<p> 一个我也看不懂的例子：(?&lt;=&lt;(\w+)&gt;).<em>(?=&lt;\/\1&gt;)匹配不包含属性的简单HTML标签内里的内容。(?&lt;=&lt;(\w+)&gt;)指定了这样的前缀：被尖括号括起来的单词(比如可能是<b>)，然后是.</b></em>(任意的字符串),最后是一个后缀(?=&lt;\/\1&gt;)。注意后缀里的\/，它用到了前面提过的字符转义；\1则是一个反向引用，引用的正是捕获的第一组，前面的(\w+)匹配的内容，这样如果前缀实际上是<b>的话，后缀就是</b>了。整个表达式匹配的是<b>和</b>之间的内容(再次提醒，不包括前缀和后缀本身)。</p>
+<hr>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>小括号的另一种用途是通过语法(?#comment)来包含注释。</p>
+<p><strong>2[0-4]\d(?#200-249)|25<a href="?#250-255">0-5</a>|[01]?\d\d?(?#0-199)</strong></p>
+<hr>
+<h2 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h2><h3 id="贪婪匹配"><a href="#贪婪匹配" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h3><p>以这个表达式为例：<strong>a.*b</strong>:它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab。</p>
+<h3 id="懒惰匹配："><a href="#懒惰匹配：" class="headerlink" title="懒惰匹配："></a>懒惰匹配：</h3><p>​                                <strong>懒惰限定符</strong></p>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*?</td>
+<td>重复任意次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>+?</td>
+<td>重复1次或更多次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>??</td>
+<td>重复0次或1次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>{n,m}?</td>
+<td>重复n到m次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>{n,}?</td>
+<td>重复n次以上，但尽可能少重复</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="eg"><a href="#eg" class="headerlink" title="eg"></a>eg</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">url = <span class="string">'https://www.zhihu.com/question/41411126#answer-31923974'</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(r.text)</span><br><span class="line"><span class="comment">#print r.text</span></span><br><span class="line">a = re.findall(<span class="string">r'&lt;a class=.*data-tip=.*href="/people/liu-hong-rui-78-97.*'</span>,r.text)</span><br><span class="line"><span class="keyword">print</span> a</span><br></pre></td></tr></table></figure>
+<p>==&gt;<figure class="highlight plain"><figcaption><span>class="author-link" data-tip="pbliu-hong-rui-78-97" href="/people/liu-hong-rui-78-97">洪文太```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">``````python</span><br><span class="line">link = re.findall(r&apos;/(?=p)\w*/[a-z 0-9 -]*&apos;,a[0])</span><br><span class="line">print link[0]</span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
+<p>==&gt;<code>/people/liu-hong-rui-78-97</code></p>
+<p><a href="http://wiki.ubuntu.org.cn/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97" target="_blank" rel="external">Python正则表达式操作指南</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则/" rel="tag">#正则</a>
+          
+            <a href="/tags/re/" rel="tag">#re</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/12/configration/" rel="next" title="Mac环境配置">
+                <i class="fa fa-chevron-left"></i> Mac环境配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/11/coding/" rel="prev" title="别轻易说，我热爱编程">
+                别轻易说，我热爱编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://7xpfyd.com1.z0.glb.clouddn.com/panda.jpg" alt="Fan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Fan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Since you want to do,why not now?</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">类别</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FantasRu" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/panda0" target="_blank">
+                  
+                    <i class="fa fa-comments"></i> Zhihu
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/panda0" target="_blank">
+                  
+                    <i class="fa fa-v2ex"></i> v2ex
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式测试网站-Regex-Pal"><span class="nav-number">1.</span> <span class="nav-text">正则表达式测试网站:Regex Pal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#b"><span class="nav-number">1.1.</span> <span class="nav-text">\b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d-数字"><span class="nav-number">1.2.</span> <span class="nav-text">\d 数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#w-字母-s-空白"><span class="nav-number">1.3.</span> <span class="nav-text">\w 字母 \s 空白</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">1.4.</span> <span class="nav-text">查找\ . , *</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.5.</span> <span class="nav-text">^ $</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反义"><span class="nav-number">1.6.</span> <span class="nav-text">反义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">1.7.</span> <span class="nav-text">[ ]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#或"><span class="nav-number">1.8.</span> <span class="nav-text">| 或</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后向应用"><span class="nav-number">1.9.</span> <span class="nav-text">后向应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零宽断言"><span class="nav-number">1.10.</span> <span class="nav-text">零宽断言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#零宽度正预测先行断言-exp"><span class="nav-number">1.10.1.</span> <span class="nav-text">零宽度正预测先行断言(?=exp)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#零宽度正回顾后发断言-lt-exp"><span class="nav-number">1.10.2.</span> <span class="nav-text">零宽度正回顾后发断言(?<=exp)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#零宽度负预测先行断言-exp"><span class="nav-number">1.10.3.</span> <span class="nav-text">零宽度负预测先行断言(?!exp)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#零宽度负回顾后发断言-lt-exp"><span class="nav-number">1.10.4.</span> <span class="nav-text">零宽度负回顾后发断言(?<!exp)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">1.11.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪与懒惰"><span class="nav-number">1.12.</span> <span class="nav-text">贪婪与懒惰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪匹配"><span class="nav-number">1.12.1.</span> <span class="nav-text">贪婪匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒惰匹配："><span class="nav-number">1.12.2.</span> <span class="nav-text">懒惰匹配：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eg"><span class="nav-number">2.</span> <span class="nav-text">eg</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">
+  <b>Fan</b>
+  &nbsp;&nbsp&nbsp;
+  <a class="theme-link" href="http://fantasru.github.io/about/">
+  Contact me
+  </a>
+  </span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io"><b>Hexo</b></a>
+</div>
+
+<div class="theme-info">
+  Server by 
+  <a class="theme-link" href="https://github.com/FantasRu/FantasRu.github.io">
+    <b>Git</b>
+  </a>
+</div>
+
+
+
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+   document.addEventListener(
+  'visibilitychange', function(){
+
+ document.title = document.hidden ? '我不开心了,快回来看我！':'panda的博客'
+
+
+});</script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

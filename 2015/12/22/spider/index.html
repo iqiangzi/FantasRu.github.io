@@ -1,0 +1,774 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,爬虫," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="原文地址在我的Github
+
+什么是爬虫​爬虫是一种程序，可以抓取网络上的数据。比如证券交易数据，天气数据，网站用户数据，图片。拿到这些数据之后你就可以做下一步工作了。
+
+这里是百度百科">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python入门爬虫学习">
+<meta property="og:url" content="http://fantasru.github.io/2015/12/22/spider/index.html">
+<meta property="og:site_name" content="panda的博客">
+<meta property="og:description" content="原文地址在我的Github
+
+什么是爬虫​爬虫是一种程序，可以抓取网络上的数据。比如证券交易数据，天气数据，网站用户数据，图片。拿到这些数据之后你就可以做下一步工作了。
+
+这里是百度百科">
+<meta property="og:image" content="http://7xpfyd.com1.z0.glb.clouddn.com/pic_1.png">
+<meta property="og:image" content="http://7xpfyd.com1.z0.glb.clouddn.com/1.png">
+<meta property="og:image" content="http://7xpfyd.com1.z0.glb.clouddn.com/2.png">
+<meta property="og:image" content="http://7xpfyd.com1.z0.glb.clouddn.com/dangdang.png">
+<meta property="og:image" content="http://7xpfyd.com1.z0.glb.clouddn.com/4.png">
+<meta property="og:updated_time" content="2016-03-12T13:38:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python入门爬虫学习">
+<meta name="twitter:description" content="原文地址在我的Github
+
+什么是爬虫​爬虫是一种程序，可以抓取网络上的数据。比如证券交易数据，天气数据，网站用户数据，图片。拿到这些数据之后你就可以做下一步工作了。
+
+这里是百度百科">
+<meta name="twitter:image" content="http://7xpfyd.com1.z0.glb.clouddn.com/pic_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> python入门爬虫学习 | panda的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cf36ca0918971bedd439356c80acefe8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">panda的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">XX</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            日志
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            类别
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python入门爬虫学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-22T21:28:02+08:00" content="2015-12-22">
+              2015-12-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><blockquote>
+<p>原文地址在我的<a href="https://github.com/FantasRu/Spider/blob/master/README.md" target="_blank" rel="external">Github</a></p>
+</blockquote>
+<h2 id="什么是爬虫"><a href="#什么是爬虫" class="headerlink" title="什么是爬虫"></a><strong>什么是爬虫</strong></h2><p>​<br>爬虫是一种程序，可以抓取网络上的数据。比如证券交易数据，天气数据，网站用户数据，图片。拿到这些数据之后你就可以做下一步工作了。</p>
+<blockquote>
+<p>这里是<a href="http://baike.baidu.com/link?url=_ROm4NY3IeRS8XatlyXwWtrRM1oCT7ZlvrY5Y5AWa8Zmey8lI0_2igphyOxvd1i3" target="_blank" rel="external">百度百科</a></p>
+</blockquote>
+<a id="more"></a>
+<h2 id="如何使用爬虫"><a href="#如何使用爬虫" class="headerlink" title="如何使用爬虫"></a><strong>如何使用爬虫</strong></h2><p>爬虫是为了获取网络上的信息，首先得给服务器发请求，然后服务器把信息发给你。服务器发给你的一般是一个html文件，拿到html文件，接下来你要做的就是提取信息，你感兴趣的信息。你需要两样东西，一样用来快速定位你要获取的信息在html源文件中的位置，让你知道要提取什么；另一样用来提取信息。第一样可以选firefox或chrome，自带开发者功能，第二样可以用Beautiful Soup。</p>
+<h3 id="urllib（python自带的一个网络库）"><a href="#urllib（python自带的一个网络库）" class="headerlink" title="urllib（python自带的一个网络库）"></a><strong>urllib</strong>（python自带的一个网络库）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取网页html</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">geturl</span><span class="params">(url)</span>:</span></span><br><span class="line">	html = urllib.urlopen(url)</span><br><span class="line">	content = html.read()</span><br><span class="line">	html.close() </span><br><span class="line">	<span class="keyword">return</span> content</span><br></pre></td></tr></table></figure>
+<h3 id="re（正则表达式）"><a href="#re（正则表达式）" class="headerlink" title="re（正则表达式）"></a><strong>re</strong>（正则表达式）</h3><p>如下图:爬取所需图片</p>
+<p><img src="http://7xpfyd.com1.z0.glb.clouddn.com/pic_1.png" alt="image"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"BDE_Image"</span> <span class="attr">src</span>=<span class="string">"http://imgsrc.baidu.com/forum/w%3D580/sign=52d5d0110e24ab18e016e13f05fbe69a/6f3f73da81cb39dbb64e5261d7160924aa183071.jpg"</span> <span class="attr">size</span>=<span class="string">"39194"</span> <span class="attr">changedsize</span>=<span class="string">"true"</span> <span class="attr">width</span>=<span class="string">"560"</span> <span class="attr">height</span>=<span class="string">"747"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>正则表达式:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern = <span class="string">r'class="BDE_Image" src="(.+?\.jpg)"'</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>点击这里，<a href="https://github.com/FantasRu/Spider/blob/master/demo/1.py" target="_blank" rel="external">爬取美女图片</a></strong></p>
+<p><img src="http://7xpfyd.com1.z0.glb.clouddn.com/1.png" alt="image"></p>
+<blockquote>
+<p><strong>点击<a href="http://blog.sina.com.cn/s/blog_a15aa56901017liq.html" target="_blank" rel="external">这里</a>进一步学习正则表达式</strong></p>
+</blockquote>
+<h3 id="urllib2（带头抓取受限网页）"><a href="#urllib2（带头抓取受限网页）" class="headerlink" title="urllib2（带头抓取受限网页）"></a><strong>urllib2</strong>（带头抓取受限网页）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">url = <span class="string">"http://blog.csdn.net/FansUnion"</span></span><br><span class="line"><span class="comment">#自定义Header,模拟浏览器向服务器提交请求</span></span><br><span class="line">req = urllib2.Request(url)</span><br><span class="line">req.add_header(<span class="string">'User-Agent'</span>, <span class="string">'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'</span>)</span><br><span class="line">req.add_header(<span class="string">'Host'</span>, <span class="string">'blog.csdn.net'</span>)</span><br><span class="line">req.add_header(<span class="string">'Referer'</span>, <span class="string">'http://blog.csdn.net'</span>)</span><br><span class="line">req.add_header(<span class="string">'GET'</span>, url)</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载网页html并打印</span></span><br><span class="line">html = urllib2.urlopen(req)</span><br><span class="line">content = html.read()</span><br><span class="line"><span class="keyword">print</span> content</span><br><span class="line">html.close()</span><br></pre></td></tr></table></figure>
+<p><strong>示例在<a href="https://github.com/FantasRu/Spider/blob/master/demo/2.py" target="_blank" rel="external">这里</a></strong></p>
+<h4 id="difference"><a href="#difference" class="headerlink" title="difference"></a>difference</h4><p><strong>urllib</strong>和<strong>urllib2</strong>都是接受URL请求的相关模块，但是提供了不同的功能。两个最显著的不同如下：</p>
+<p><strong>urllib2</strong>可以接受一个Request类的实例来设置URL请求的headers，<strong>urllib</strong>仅可以接受URL。这意味着，你不可以伪装你的User Agent字符串等。<br><strong>urllib</strong>提供urlencode方法用来GET查询字符串的产生，而<strong>urllib2</strong>没有。这是为何<strong>urllib</strong>常和<strong>urllib2</strong>一起使用的原因。</p>
+<h3 id="BeautifulSoap4（解析html-XML等内容获取内容）"><a href="#BeautifulSoap4（解析html-XML等内容获取内容）" class="headerlink" title="BeautifulSoap4（解析html/XML等内容获取内容）"></a><strong>BeautifulSoap4</strong>（解析html/XML等内容获取内容）</h3><p><a href="(http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html">官方文档</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="comment">#创建对象:用urllib返回的html初始化BeautifulSoup对象</span></span><br><span class="line">content = urllib.urlopen(url).read()</span><br><span class="line">html.close()</span><br><span class="line">soup = BeautifulSoup(content)</span><br><span class="line">​```	</span><br><span class="line"><span class="comment">#### bs的作用</span></span><br><span class="line"></span><br><span class="line">​```python</span><br><span class="line"><span class="comment">#切割html</span></span><br><span class="line"><span class="keyword">print</span> soup.title</span><br><span class="line"><span class="keyword">print</span> soup.body</span><br><span class="line"><span class="keyword">print</span> soup.p</span><br><span class="line"></span><br><span class="line"><span class="comment">#找到所有a标签</span></span><br><span class="line"><span class="keyword">print</span> soup.find_all(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure></p>
+<pre><code>[&lt;a aria-expanded=&quot;false&quot; aria-haspopup=&quot;true&quot; class=&quot;visible-xs-block m-toptools&quot; data-toggle=&quot;dropdown&quot; href=&quot;javascript:void(0);&quot; id=&quot;dLabel&quot;&gt;\n&lt;span class=&quot;glyphicon glyphicon-align-justify&quot;&gt;&lt;/span&gt;\n&lt;span class=&quot;mobile-menu__unreadpoint&quot;&gt;&lt;/span&gt;\n&lt;/a&gt;, &lt;a href=&quot;/questions/newest&quot;&gt;\u95ee\u7b54&lt;/a&gt;, &lt;a href=&quot;/blogs&quot;&gt;\u6587\u7ae0&lt;/a&gt;, &lt;a href=&quot;/notes&quot;&gt;\u7b14\u8bb0&lt;/a&gt;, &lt;a href=&quot;/jobs&quot;&gt;\u804c\u4f4d&lt;/a&gt;, &lt;a href=&quot;/events&quot;&gt;\u6d3b\u52a8&lt;/a&gt;, &lt;a href=&quot;/tags&quot;&gt;\u6807\u7b7e&lt;/a&gt;, &lt;a href=&quot;/users&quot;&gt;\u699c\u5355&lt;/a&gt;, &lt;a href=&quot;/sites&quot;&gt;\u5b50\u7ad9&lt;/a&gt;, &lt;a class=&quot;sf&quot; href=&quot;/&quot;&gt;SegmentFault&lt;/a&gt;,&lt;a href=&quot;/contact&quot;&gt;\u8054\u7cfb\u6211\u4eec&lt;/a&gt;, &lt;a href=&quot;/faq&quot;&gt;\u5e2e\u52a9\u4e2d\u5fc3&lt;/a&gt;, &lt;a href=&quot;/about&quot;&gt;\u5173\u4e8e\u6211\u4eec&lt;/a&gt;, &lt;a href=&quot;/tos&quot;&gt;\u670d\u52a1\u6761\u6b3e&lt;/a&gt;, &lt;a href=&quot;/faq&quot;&gt;\u5e2e\u52a9\u4e2d\u5fc3&lt;/a&gt;, &lt;a href=&quot;/repu&quot;&gt;\u58f0\u671b\u4e0e\u6743\u9650&lt;/a&gt;]
+</code></pre><hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#传正则表达式</span></span><br><span class="line">soup.find_all(href=re.compile(<span class="string">"elsie"</span>), id=<span class="string">'link1'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;three&lt;/a&gt;]
+</code></pre><hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查找css</span></span><br><span class="line"><span class="keyword">print</span> soup.select(<span class="string">'.sister'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;, &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;, &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;]
+</code></pre><hr>
+<p><strong>点击这里,<a href="https://github.com/FantasRu/Spider/blob/master/demo/3.py" target="_blank" rel="external">爬取内涵段子</a></strong><br><img src="http://7xpfyd.com1.z0.glb.clouddn.com/2.png" alt="IMAGE"></p>
+<hr>
+<h3 id="requests（第三方库）"><a href="#requests（第三方库）" class="headerlink" title="requests（第三方库）"></a><strong>requests</strong>（第三方库）</h3><pre><code>pip install requests
+</code></pre><p>用了都说好</p>
+<p>========================================================</p>
+<h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a><strong>应用实例</strong></h2><ul>
+<li><strong><a href="https://github.com/FantasRu/Spider/blob/master/demo/1.py" target="_blank" rel="external">爬取美女图片</a></strong></li>
+<li><strong><a href="https://github.com/FantasRu/Spider/blob/master/demo/3.py" target="_blank" rel="external">爬取内涵段子</a></strong></li>
+<li><strong><a href="https://github.com/FantasRu/Spider/blob/master/demo/dangdang.py" target="_blank" rel="external">爬取当当网商品信息</a></strong><br><img src="http://7xpfyd.com1.z0.glb.clouddn.com/dangdang.png" alt="image"></li>
+<li><strong><a href="https://github.com/FantasRu/Spider/blob/master/demo/4.py" target="_blank" rel="external">爬取妹子图网站妹子</a></strong><br><img src="http://7xpfyd.com1.z0.glb.clouddn.com/4.png" alt="image"></li>
+</ul>
+<h2 id="视频教学-youtube"><a href="#视频教学-youtube" class="headerlink" title="视频教学(youtube)"></a><strong>视频教学(youtube)</strong></h2><p><a href="http://www.largitdata.com/course/9/" target="_blank" rel="external">如何使用Python 的requests 及BeautifulSoup4 完成淘寶爬蟲</a></p>
+<p><a href="http://www.largitdata.com/course/8/" target="_blank" rel="external">如何使用Python 套件: BeautifulSoup4 剖析網頁內容</a></p>
+<p><a href="http://www.largitdata.com/course/58/" target="_blank" rel="external">如何使用Python 爬蟲 (Python Crawler) 下載Youtube 影片</a></p>
+<h2 id="进一步学习，点击这里"><a href="#进一步学习，点击这里" class="headerlink" title="进一步学习，点击这里"></a><strong>进一步学习，<a href="https://github.com/FantasRu/Scrapy" target="_blank" rel="external">点击这里</a></strong></h2><h3 id="scrapy-爬虫框架"><a href="#scrapy-爬虫框架" class="headerlink" title="scrapy(爬虫框架)"></a><strong>scrapy</strong>(爬虫框架)</h3><p><a href="http://doc.scrapy.org/en/latest/" target="_blank" rel="external">官方文档</a></p>
+<p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/14/wordcloud/" rel="next" title="程序员的浪漫（python词云）">
+                <i class="fa fa-chevron-left"></i> 程序员的浪漫（python词云）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/23/First Blog/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://7xpfyd.com1.z0.glb.clouddn.com/panda.jpg" alt="Fan" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Fan</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Since you want to do,why not now?</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">类别</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/FantasRu" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/panda0" target="_blank">
+                  
+                    <i class="fa fa-comments"></i> Zhihu
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/member/panda0" target="_blank">
+                  
+                    <i class="fa fa-v2ex"></i> v2ex
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是爬虫"><span class="nav-number">1.</span> <span class="nav-text">什么是爬虫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用爬虫"><span class="nav-number">2.</span> <span class="nav-text">如何使用爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#urllib（python自带的一个网络库）"><span class="nav-number">2.1.</span> <span class="nav-text">urllib（python自带的一个网络库）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#re（正则表达式）"><span class="nav-number">2.2.</span> <span class="nav-text">re（正则表达式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#urllib2（带头抓取受限网页）"><span class="nav-number">2.3.</span> <span class="nav-text">urllib2（带头抓取受限网页）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#difference"><span class="nav-number">2.3.1.</span> <span class="nav-text">difference</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BeautifulSoap4（解析html-XML等内容获取内容）"><span class="nav-number">2.4.</span> <span class="nav-text">BeautifulSoap4（解析html/XML等内容获取内容）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requests（第三方库）"><span class="nav-number">2.5.</span> <span class="nav-text">requests（第三方库）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用实例"><span class="nav-number">3.</span> <span class="nav-text">应用实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视频教学-youtube"><span class="nav-number">4.</span> <span class="nav-text">视频教学(youtube)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步学习，点击这里"><span class="nav-number">5.</span> <span class="nav-text">进一步学习，点击这里</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scrapy-爬虫框架"><span class="nav-number">5.1.</span> <span class="nav-text">scrapy(爬虫框架)</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">
+  <b>Fan</b>
+  &nbsp;&nbsp&nbsp;
+  <a class="theme-link" href="http://fantasru.github.io/about/">
+  Contact me
+  </a>
+  </span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io"><b>Hexo</b></a>
+</div>
+
+<div class="theme-info">
+  Server by 
+  <a class="theme-link" href="https://github.com/FantasRu/FantasRu.github.io">
+    <b>Git</b>
+  </a>
+</div>
+
+
+
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+   document.addEventListener(
+  'visibilitychange', function(){
+
+ document.title = document.hidden ? '我不开心了,快回来看我！':'panda的博客'
+
+
+});</script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
