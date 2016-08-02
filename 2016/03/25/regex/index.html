@@ -61,7 +61,7 @@
 <meta property="og:description" content="正则表达式（Regular Expression，在代码中常简写为regex、regexp或RE）。正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。
 
 正则表达式测试网站:Regex Pal">
-<meta property="og:updated_time" content="2016-03-25T12:39:42.000Z">
+<meta property="og:updated_time" content="2016-08-02T00:46:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式学习笔记">
 <meta name="twitter:description" content="正则表达式（Regular Expression，在代码中常简写为regex、regexp或RE）。正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。
@@ -459,7 +459,7 @@
 </table>
 <hr>
 <h1 id="eg"><a href="#eg" class="headerlink" title="eg"></a>eg</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">url = <span class="string">'https://www.zhihu.com/question/41411126#answer-31923974'</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(r.text)</span><br><span class="line"><span class="comment">#print r.text</span></span><br><span class="line">a = re.findall(<span class="string">r'&lt;a class=.*data-tip=.*href="/people/liu-hong-rui-78-97.*'</span>,r.text)</span><br><span class="line"><span class="keyword">print</span> a</span><br></pre></td></tr></table></figure>
-<p>==&gt;<figure class="highlight plain"><figcaption><span>class="author-link" data-tip="pbliu-hong-rui-78-97" href="/people/liu-hong-rui-78-97">洪文太```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">``````python</span><br><span class="line">link = re.findall(r&apos;/(?=p)\w*/[a-z 0-9 -]*&apos;,a[0])</span><br><span class="line">print link[0]</span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
+<p>==&gt;<figure class="highlight plain"><figcaption><span>class="author-link" data-tip="pbliu-hong-rui-78-97" href="/people/liu-hong-rui-78-97">洪文太```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```python</span><br><span class="line">link = re.findall(r&apos;/(?=p)\w*/[a-z 0-9 -]*&apos;,a[0])</span><br><span class="line">print link[0]</span><br></pre></td></tr></table></figure></p>
 <p>==&gt;<code>/people/liu-hong-rui-78-97</code></p>
 <p><a href="http://wiki.ubuntu.org.cn/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97" target="_blank" rel="external">Python正则表达式操作指南</a></p>
 </span>
@@ -481,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/12/configration/" rel="next" title="Mac环境配置">
-                <i class="fa fa-chevron-left"></i> Mac环境配置
+              <a href="/2016/03/12/configration/" rel="next" title="Mac开发环境">
+                <i class="fa fa-chevron-left"></i> Mac开发环境
               </a>
             
           </div>
@@ -559,7 +559,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -573,7 +573,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
